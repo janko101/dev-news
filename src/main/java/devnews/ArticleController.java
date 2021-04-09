@@ -42,4 +42,11 @@ public class ArticleController {
         return ResponseEntity.ok(article);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Article> delete(@PathVariable Long id) {
+        Article article = articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        articleRepository.delete(article);
+        return ResponseEntity.ok(article);
+    }
+
 }
