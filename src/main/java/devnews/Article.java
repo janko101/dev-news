@@ -16,9 +16,7 @@ public class Article {
     private String body;
     private String authorName;
 
-    public Article() {
-
-    }
+    public Article() {}
 
     public Long getId() {
         return id;
