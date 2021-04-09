@@ -18,6 +18,6 @@ public class ArticleController {
 
     @GetMapping("/index")
     public List<Article> index() {
-
+        return articleRepository.findAll();
     }
 }
