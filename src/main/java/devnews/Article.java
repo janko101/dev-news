@@ -22,6 +22,10 @@ public class Article {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Article(String title, String body, String authorName) {
         this.title = title;
         this.body = body;

@@ -34,4 +34,12 @@ public class ArticleController {
         return ResponseEntity.status(HttpStatus.CREATED).body(article);
     }
 
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<Article> edit(@PathVariable Long id, @RequestBody Article updatedArticle) {
+        articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        updatedArticle.setId(id);
+        Article article = articleRepository.save(updatedArticle);
+        return ResponseEntity.ok(article);
+    }
+
 }
