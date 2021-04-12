@@ -14,7 +14,7 @@ public class Article {
     private String body;
     private String authorName;
 
-    @OneToMany(mappedBy = "selectedArticle")
+    @OneToMany(mappedBy = "article")
     private List<Comment> comments;
 
     public Article() {}
@@ -57,4 +57,11 @@ public class Article {
         this.authorName = authorName;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }
