@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -34,7 +35,7 @@ public class CommentController {
     }
 
     @PutMapping("/comments/{id}")
-    public ResponseEntity<Comment> edit(@PathVariable Long id, @RequestBody Comment editedComment) {
+    public ResponseEntity<Comment> edit(@PathVariable Long id, @Valid @RequestBody Comment editedComment) {
         commentRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         editedComment.setId(id);
         Comment comment = commentRepository.save(editedComment);
