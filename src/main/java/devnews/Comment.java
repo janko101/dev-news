@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -15,8 +16,10 @@ public class Comment {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank
     private String body;
     @Column(nullable = false)
+    @NotBlank
     private String authorName;
 
     @ManyToOne

@@ -21,9 +21,14 @@ public class CommentController {
     }
 
     @GetMapping("/articles/{articleId}/comments")
-    public ResponseEntity<List<Comment>> listComments(@PathVariable Long articleId) {
+    public ResponseEntity<List<Comment>> index(@PathVariable Long articleId) {
         articleRepository.findById(articleId).orElseThrow(ResourceNotFoundException::new);
         return ResponseEntity.ok(commentRepository.findByArticleId(articleId));
+    }
+
+    @GetMapping(value = "/comments", params = {"authorName"})
+    public ResponseEntity<List<Comment>> indexByAuthor(@RequestParam String authorName) {
+        return ResponseEntity.ok(commentRepository.findByAuthorName(authorName));
     }
 
     @PostMapping("/articles/{articleId}/comments")

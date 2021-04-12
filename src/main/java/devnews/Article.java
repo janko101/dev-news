@@ -1,6 +1,7 @@
 package devnews;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -11,10 +12,13 @@ public class Article {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank
     private String title;
     @Column(nullable = false)
+    @NotBlank
     private String body;
     @Column(nullable = false)
+    @NotBlank
     private String authorName;
 
     @OneToMany(mappedBy = "article")
