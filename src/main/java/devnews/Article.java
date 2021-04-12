@@ -24,6 +24,9 @@ public class Article {
     @OneToMany(mappedBy = "article")
     private List<Comment> comments;
 
+    @ManyToMany(mappedBy = "topics")
+    private List<Topic> topic;
+
     public Article() {}
 
     public Long getId() {
