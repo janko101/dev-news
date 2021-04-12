@@ -2,12 +2,11 @@ package devnews;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 public class CommentController {
 
     CommentRepository commentRepository;
@@ -16,6 +15,12 @@ public class CommentController {
     public CommentController(CommentRepository commentRepository, ArticleRepository articleRepository) {
         this.commentRepository = commentRepository;
         this.articleRepository = articleRepository;
+    }
+
+    @GetMapping("/articles/{articleId}/comments")
+    public List<Comment> index(@PathVariable Long articleId) {
+        articleRepository.findById(articleId).orElseThrow(ResourceNotFoundException::new);
+        return commentRepository.findAll();
     }
 
     @PostMapping("/articles/{articleId}/comments")
