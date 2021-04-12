@@ -10,8 +10,11 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String title;
+    @Column(nullable = false)
     private String body;
+    @Column(nullable = false)
     private String authorName;
 
     @OneToMany(mappedBy = "article")
