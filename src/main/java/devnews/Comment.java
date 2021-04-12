@@ -38,4 +38,12 @@ public class Comment {
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
+
+    public Article getSelectedArticle() {
+        return selectedArticle;
+    }
+
+    public void setSelectedArticle(Article selectedArticle) {
+        this.selectedArticle = selectedArticle;
+    }
 }
