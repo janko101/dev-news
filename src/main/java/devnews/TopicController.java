@@ -53,4 +53,15 @@ public class TopicController {
         articleRepository.save(article);
         return ResponseEntity.status(HttpStatus.CREATED).body(topic);
     }
+
+    @PutMapping("/topics/{id}")
+    public ResponseEntity<Topic> edit(@PathVariable Long id, @RequestBody Topic newTopic) {
+        Topic topic = topicRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+
+        newTopic.setArticles(topic.getArticles());
+        newTopic.setId(id);//
+        topicRepository.save(newTopic);
+        return ResponseEntity.ok(newTopic);
+    }
+
 }
