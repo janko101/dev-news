@@ -71,4 +71,18 @@ public class TopicController {
         topicRepository.delete(topic);
     }
 
+    @DeleteMapping("/articles/{articleId}/topics/{topicId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAssociation(@PathVariable Long articleId, @PathVariable Long topicId) {
+        Article article = articleRepository.findById(articleId).orElseThrow(ResourceNotFoundException::new);
+        Topic topic = topicRepository.findById(topicId).orElseThrow(ResourceNotFoundException::new);
+        if (article.getTopics().contains(topic)) {
+            article.getTopics().remove(topic);
+            articleRepository.save(article);
+
+        } else {
+            throw new ResourceNotFoundException();
+        }
+    }
+
 }
