@@ -22,6 +22,12 @@ public class TopicController {
         return topicRepository.findAll();
     }
 
+    @GetMapping("/articles/{articleId}/topics")
+    public List<Topic> listOfTopicsByArticleId(@PathVariable Long articleId) {
+        Article article = articleRepository.findById(articleId).orElseThrow(ResourceNotFoundException::new);
+        return article.getTopics();
+    }
+
     @PostMapping("/topics")
     public ResponseEntity<Topic> create(@RequestBody Topic topic) {
         topicRepository.save(topic);
