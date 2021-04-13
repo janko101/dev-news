@@ -2,10 +2,7 @@ package devnews;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +15,11 @@ public class TopicController {
     public TopicController(TopicRepository topicRepository, ArticleRepository articleRepository) {
         this.topicRepository = topicRepository;
         this.articleRepository = articleRepository;
+    }
+
+    @GetMapping("/topics")
+    public List<Topic> index() {
+        return topicRepository.findAll();
     }
 
     @PostMapping("/topics")
