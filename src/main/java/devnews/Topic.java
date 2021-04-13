@@ -1,5 +1,9 @@
 package devnews;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,7 +16,9 @@ public class Topic {
 
     private String name;
 
-    @ManyToMany
+    @ManyToMany (mappedBy = "topics")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     private List<Article> articles;
 
     public Long getId() {

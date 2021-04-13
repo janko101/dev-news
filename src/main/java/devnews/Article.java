@@ -1,5 +1,9 @@
 package devnews;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
@@ -24,8 +28,8 @@ public class Article {
     @OneToMany(mappedBy = "article")
     private List<Comment> comments;
 
-    @ManyToMany(mappedBy = "topics")
-    private List<Topic> topic;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Topic> topics;
 
     public Article() {}
 
@@ -73,5 +77,13 @@ public class Article {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
     }
 }
