@@ -1,5 +1,8 @@
-package devnews;
+package devnews.api;
 
+import devnews.model.Article;
+import devnews.repository.ArticleRepository;
+import devnews.api.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

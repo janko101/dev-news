@@ -1,5 +1,6 @@
-package devnews;
+package devnews.repository;
 
+import devnews.model.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

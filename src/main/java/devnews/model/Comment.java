@@ -1,4 +1,4 @@
-package devnews;
+package devnews.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;

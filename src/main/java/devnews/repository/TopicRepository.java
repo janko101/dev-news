@@ -1,5 +1,6 @@
-package devnews;
+package devnews.repository;
 
+import devnews.model.Topic;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

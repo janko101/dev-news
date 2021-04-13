@@ -1,5 +1,10 @@
-package devnews;
+package devnews.api;
 
+import devnews.api.exception.ResourceNotFoundException;
+import devnews.model.Article;
+import devnews.model.Topic;
+import devnews.repository.ArticleRepository;
+import devnews.repository.TopicRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

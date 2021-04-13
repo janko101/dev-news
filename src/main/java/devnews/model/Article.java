@@ -1,4 +1,4 @@
-package devnews;
+package devnews.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
