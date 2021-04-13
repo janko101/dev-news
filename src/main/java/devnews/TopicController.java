@@ -30,12 +30,25 @@ public class TopicController {
 
     @PostMapping("/topics")
     public ResponseEntity<Topic> create(@RequestBody Topic topic) {
-        topicRepository.save(topic);
-        return ResponseEntity.status(HttpStatus.CREATED).body(topic);
+        boolean isTopicNew = true;
+        List<Topic> topics = topicRepository.findAll();
+
+        for (Topic t : topics) {
+            if (t.getName().equals(topic.getName())) {
+                isTopicNew = false;
+                break;
+            }
+        }
+
+        if (isTopicNew) {
+            topicRepository.save(topic);
+            return ResponseEntity.status(HttpStatus.CREATED).body(topic);
+        } else
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(topic);
     }
 
     @PostMapping("/articles/{articleId}/topics")
-    public ResponseEntity<Topic> associateTopicToArticle(@PathVariable Long articleId, @RequestBody Topic topic) {
+    public ResponseEntity<Topic> createAssociation(@PathVariable Long articleId, @RequestBody Topic topic) {
         Article article = articleRepository.findById(articleId).orElseThrow(ResourceNotFoundException::new);
         boolean isTopicNew = true;
         List<Topic> topics = article.getTopics();
@@ -46,6 +59,7 @@ public class TopicController {
                 break;
             }
         }
+
         if (isTopicNew) {
             topics.add(topic);
         }
