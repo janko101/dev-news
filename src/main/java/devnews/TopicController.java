@@ -64,4 +64,11 @@ public class TopicController {
         return ResponseEntity.ok(newTopic);
     }
 
+    @DeleteMapping("/topics/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long id) {
+        Topic topic = topicRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        topicRepository.delete(topic);
+    }
+
 }
