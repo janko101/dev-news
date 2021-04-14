@@ -33,6 +33,13 @@ public class TopicController {
         return article.getTopics();
     }
 
+    @GetMapping("/topics/{topicId}/articles")
+    public ResponseEntity<List<Article>> listOfArticlesByTopicId(@PathVariable Long topicId) {
+        Topic topic = topicRepository.findById(topicId).orElseThrow(ResourceNotFoundException::new);
+        List <Article> articles = topic.getArticles();
+        return ResponseEntity.ok(articles);
+    }
+
     @PostMapping("/topics")
     public ResponseEntity<Topic> create(@RequestBody Topic topic) {
         boolean isTopicNew = true;
@@ -103,5 +110,6 @@ public class TopicController {
             throw new ResourceNotFoundException();
         }
     }
+
 
 }
